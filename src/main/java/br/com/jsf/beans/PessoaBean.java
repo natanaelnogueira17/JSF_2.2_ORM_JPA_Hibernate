@@ -1,6 +1,5 @@
 package br.com.jsf.beans;
 
-import javax.annotation.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import br.com.jsf.dao.DaoGeneric;
@@ -14,6 +13,7 @@ public class PessoaBean {
 	
 	public String salvar () {
 		daoGeneric.salvar(pessoa);
+		pessoa = new Pessoa();
 		return "";
 	}
 

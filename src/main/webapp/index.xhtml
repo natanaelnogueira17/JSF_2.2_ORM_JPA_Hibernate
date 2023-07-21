@@ -9,11 +9,18 @@
 
 <h:body>
 <h:form>
-		<h:outputLabel value="JSF aqui !"></h:outputLabel>
-		<br/>
-		<h:inputText ></h:inputText>
-		<h1>titulo teste</h1>
-		<h:commandButton value="tst"></h:commandButton>
+		<h:panelGrid columns="2" width="5">
+			<h1>User Cadastre</h1>
+			<h:outputLabel/>
+			<h:outputLabel value="Nome: "/>			
+			<h:inputText value="#{pessoaBean.pessoa.nome}"/>		
+			<h:outputLabel value="Sobrenome:"/>		
+			<h:inputText value="#{pessoaBean.pessoa.sobrenome}"/>			
+			<h:outputLabel value="Idade: "/>			
+			<h:inputText value="#{pessoaBean.pessoa.idade}"/>
+			<h:outputLabel/>
+			<h:commandButton value="Salvar"  action="#{pessoaBean.salvar}"/>
+		</h:panelGrid>
 
 	</h:form>
 
