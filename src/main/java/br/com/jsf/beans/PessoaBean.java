@@ -1,12 +1,13 @@
 package br.com.jsf.beans;
 
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import br.com.jsf.dao.DaoGeneric;
 import br.com.jsf.entidades.Pessoa;
 
 @ViewScoped
-@javax.faces.bean.ManagedBean
+@ManagedBean
 public class PessoaBean {
 	private Pessoa pessoa = new Pessoa();
 	private DaoGeneric<Pessoa>daoGeneric = new DaoGeneric<>();
