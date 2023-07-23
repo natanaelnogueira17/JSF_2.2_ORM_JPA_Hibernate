@@ -10,7 +10,7 @@ public class JPAUtil {
 	static {
 		if(factory == null) {
 			
-			factory = Persistence.createEntityManagerFactory("JSF");
+			factory = Persistence.createEntityManagerFactory("jsf");
 		}
 	}
 	

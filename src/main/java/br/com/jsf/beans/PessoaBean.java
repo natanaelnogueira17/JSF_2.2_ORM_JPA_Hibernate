@@ -16,26 +16,29 @@ public class PessoaBean {
 	private Pessoa pessoa = new Pessoa();
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<>();
 	private List<Pessoa> pessoas = new ArrayList <>();
+	private boolean  novo = true;
 
 	public String salvar() {
 		pessoa = daoGeneric.merge(pessoa);
 		carregarPessoas();
+		novoUser();
 		return "";
 	}
 
 	public String novoUser() {
 		pessoa = new Pessoa();
+		novo = true;
 		return "";
 	}
 
 	public String remove() {
-		daoGeneric.delete(pessoa);
+		daoGeneric.deletePorID(pessoa);
 		pessoa = new Pessoa();
 		carregarPessoas();
 		return "";
 	}
 	
-	//@PostConstruct
+	@PostConstruct
 	public void carregarPessoas() {
 		pessoas =  daoGeneric.getListEntity(Pessoa.class);
 	}
@@ -62,6 +65,14 @@ public class PessoaBean {
 
 	public void setPessoas(List<Pessoa> pessoas) {
 		this.pessoas = pessoas;
+	}
+
+	public boolean isNovo() {
+		return novo;
+	}
+
+	public void setNovo(boolean novo) {
+		this.novo = novo;
 	}
 	
 	
