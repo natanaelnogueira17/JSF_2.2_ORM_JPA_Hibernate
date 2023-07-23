@@ -35,20 +35,36 @@
 			
 			<!-- Tabela que carrega os dados cadastrados no Banco -->
 			
-			<h:dataTable value="#{pessoaBean.pessoas}" var="p">
+			<h:dataTable value="#{pessoaBean.pessoas}" var="p" border="2" cellpadding="6">
+				<f:facet name="header">
+				Lista de pessoas Cadastradas
+			</f:facet>
 				<h:column>
+					<f:facet name="header">
+						Id
+					</f:facet>
 					<h:outputText value="#{p.id}"/>
 				</h:column>
 				<h:column>
+					<f:facet name="header">
+						Nome
+					</f:facet>
 					<h:outputText value="#{p.nome}"/>
 				</h:column>	
 				<h:column>
+					<f:facet name="header">
+						Sobrenome
+					</f:facet>
 					<h:outputText value="#{p.sobrenome}"/>
 				</h:column>	
 				<h:column>
-					<h:commandLink value="Editar">
+					<f:facet name="header">
+						Ação
+					</f:facet>
+					<h:commandLink value="Editar" >
 						<f:setPropertyActionListener value="#{p}" target="#{pessoaBean.pessoa}"/>
 					</h:commandLink>
+					<h:outputLabel value="     "></h:outputLabel>
 					<h:commandLink value="Remover" action="#{pessoaBean.remove}">
 						<f:setPropertyActionListener value="#{p}" target="#{pessoaBean.pessoa}"/>
 					</h:commandLink>
