@@ -5,12 +5,12 @@
 	xmlns:f ="http://java.sun.com/jsf/core">
 
 <h:head>
-	<title>INDEX</title>
+	<title>Batman</title>
 </h:head>
 
 <h:body>
 <h:form>
-		<h1>User Cadastre</h1>
+		<h1>Batman</h1>
 		<h:graphicImage 
 		 height="150"
 		 width="150"
@@ -33,7 +33,18 @@
 				<f:selectItem itemLabel="[Selecione]" itemValue="" noSelectionOption="true"/>
 				<f:selectItem itemLabel="Masculino" itemValue="M"/>
 				<f:selectItem itemLabel="Feminino" itemValue="F"/>
-			</h:selectOneMenu>			
+			</h:selectOneMenu>
+			<h:outputLabel value="Frameworks: "/>
+			<h:selectManyMenu id="Frameworks" value="#{pessoaBean.pessoa.frameworks}" style="height:150px">
+				<f:selectItem  itemValue="ReactJs"/>
+				<f:selectItem  itemValue="SpringBoot"/>
+				<f:selectItem  itemValue="Hibernate"/>
+				<f:selectItem  itemValue="MyBatis"/>
+				<f:selectItem  itemValue="JPA"/>
+				<f:selectItem  itemValue="JSF"/>
+				<f:selectItem  itemValue="PrimeFaces"/>				
+			</h:selectManyMenu>	
+			
 			
 			<h:outputLabel/>
 			<h:panelGroup>
