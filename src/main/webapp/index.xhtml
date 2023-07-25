@@ -49,10 +49,10 @@
 			
 			<h:outputLabel/>
 			<h:panelGroup>
-				<h:commandButton value="Salvar"  action="#{pessoaBean.salvar}" />
-				<h:commandButton value="Novo" action="#{pessoaBean.novoUser}"/>
-				<h:commandButton value="Excluir" action="#{pessoaBean.novoUser}" />
-				<h:commandButton value="limpar" type="reset"/>
+				<h:commandButton title="Salvar"  action="#{pessoaBean.salvar}" image="resource/img/salvar.png" style="width:25px"/>
+				<h:commandButton title="Novo" action="#{pessoaBean.novoUser}" image="resource/img/novo.png" style="width:20px"  />
+				<h:commandButton title="Excluir" action="#{pessoaBean.novoUser}" image="resource/img/apagar.png" style="width:20px"  />
+				<h:commandButton title="limpar" type="reset" image="resource/img/limpar.png" style="width:20px" />
 			</h:panelGroup>
 		</h:panelGrid>
 			
@@ -85,12 +85,14 @@
 					<f:facet name="header">
 						Ação
 					</f:facet>
-					<h:commandLink value="Editar" >
+					<h:commandLink title="Editar">
 						<f:setPropertyActionListener value="#{p}" target="#{pessoaBean.pessoa}"/>
+						<h:graphicImage value="/resource/img/editar.png" style="width:25px"/>
 					</h:commandLink>
-					<h:outputLabel value="     "></h:outputLabel>
-					<h:commandLink value="Remover" action="#{pessoaBean.remove}">
+					<h:outputLabel value="   --    "></h:outputLabel>
+					<h:commandLink  action="#{pessoaBean.remove}" title="Excluir" >
 						<f:setPropertyActionListener value="#{p}" target="#{pessoaBean.pessoa}"/>
+						<h:graphicImage value="/resource/img/apagar.png" style="width:25px"/>
 					</h:commandLink>
 					
 				</h:column>	
