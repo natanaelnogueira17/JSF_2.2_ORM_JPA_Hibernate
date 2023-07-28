@@ -11,8 +11,8 @@
 
 <h:body>
 <h:form>
-	<h:commandLink value="Administração" action="lancamento" style="margin-left:1cm"/>
-	<h:commandLink value="Lancamentos" action="usuarios" style="margin-left:1cm"/>
+	<h:commandLink value="Administração" action="usuarios" style="margin-left:1cm"/>
+	<h:commandLink value="Lancamentos" action="lancamento" style="margin-left:1cm"/>
 	<h:commandLink value="Trocar Usuário" action="login" style="margin-left:1cm"/>
 </h:form>
 <h:form id="formPessoa" rendered="#{pessoaBean.permitirAcesso('ADMINISTRADOR')}" >
@@ -69,7 +69,7 @@
 			<h:outputLabel/>
 			<h:panelGroup>
 				<h:commandButton title="Salvar"  action="#{pessoaBean.salvar}" image="resource/img/salvar.png" style="width:25px"/>
-				<h:commandButton title="Novo" action="#{pessoaBean.novoUser}" image="resource/img/novo.png" style="width:20px"  />
+				<h:commandButton title="Novo" action="#{pessoaBean.novoUser}" image="resource/img/novoCadastro.png" style="width:20px"  />
 				<h:commandButton title="Excluir" action="#{pessoaBean.novoUser}" image="resource/img/apagar.png" style="width:20px" rendered="#{pessoaBean.permitirAcesso('ADMINISTRADOR')}"  />
 				<h:commandButton title="limpar" type="reset" image="resource/img/limpar.png" style="width:20px" />
 			</h:panelGroup>

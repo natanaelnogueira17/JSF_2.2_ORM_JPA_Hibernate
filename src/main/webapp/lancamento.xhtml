@@ -5,11 +5,44 @@
 	xmlns:f ="http://java.sun.com/jsf/core">
 
 <h:head>
-	<title>Login</title>
+	<title>Lancamentos</title>
 </h:head>
 
 <h:body>
+<h:form>
+	<h:commandLink value="Administração" action="usuarios" style="margin-left:1cm"/>
+	<h:commandLink value="Lancamentos" action="lancamento" style="margin-left:1cm"/>
+	<h:commandLink value="Trocar Usuário" action="login" style="margin-left:1cm"/>
+</h:form>
 <h:form id="formLancamento" style="margin-top:20%;margin-left:40%">
+	<h:form>
+		<h:panelGrid columns="2">
+			<f:facet name="header">
+				<h:outputText value="Lancamentos"/>				
+			</f:facet>		
+			<h:outputLabel value="ID: "/>
+			<h:inputText value="#{lancamentoBean.lancamento.id}" readonly="true"/>
+			
+			<h:outputLabel value="Nota Fiscal: "/>
+			<h:inputText value="#{lancamentoBean.lancamento.numeroNF}" />
+			
+			<h:outputLabel value="Origem: "/>
+			<h:inputText value="#{lancamentoBean.lancamento.empresaOrigem}" />
+			
+			<h:outputLabel value="Destino: "/>
+			<h:inputText value="#{lancamentoBean.lancamento.empresaDestino}" />
+			<h:outputLabel/>
+			
+			<h:panelGroup>
+				<h:commandButton title="Salvar"  action="#{lancamentoBean.salvar}" image="resource/img/salvar.png" style="width:25px"/>
+				<h:commandButton title="Novo" action="#{lancamentoBean.novo}" image="resource/img/novoCadastro.png" style="width:20px"  />
+				<h:commandButton title="Excluir" action="#{lancamentoBean.remover}" image="resource/img/apagar.png" style="width:20px" rendered="#{pessoaBean.permitirAcesso('ADMINISTRADOR')}"  />
+				<h:commandButton title="limpar" type="reset" image="resource/img/limpar.png" style="width:20px" />
+			</h:panelGroup>
+			
+		</h:panelGrid>
+	
+	</h:form>
 		
 			
 </h:form>
