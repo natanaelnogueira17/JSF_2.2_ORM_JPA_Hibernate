@@ -26,7 +26,7 @@ public class Pessoa implements Serializable {
 	private String [] frameworks;
 	private Boolean ativo;
 	private String login;
-	private String Senha;
+	private String senha;
 	private String perfilUser;
 
 	public Pessoa() {
@@ -113,11 +113,11 @@ public class Pessoa implements Serializable {
 	}
 
 	public String getSenha() {
-		return Senha;
+		return senha;
 	}
 
 	public void setSenha(String senha) {
-		Senha = senha;
+		this.senha = senha;
 	}
 	
 	

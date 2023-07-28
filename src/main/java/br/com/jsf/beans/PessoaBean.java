@@ -6,9 +6,15 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import br.com.jsf.dao.DaoGeneric;
 import br.com.jsf.entidades.Pessoa;
+import br.com.jsf.repository.PessoaDAO;
+import br.com.jsf.repository.PessoaDaoImpl;
 
 @ViewScoped
 @ManagedBean
@@ -17,6 +23,23 @@ public class PessoaBean {
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<>();
 	private List<Pessoa> pessoas = new ArrayList <>();
 	private boolean  novo = true;
+	private PessoaDAO pessoaDao = new PessoaDaoImpl();
+	
+	public String logar() {
+		Pessoa pessoaUser = pessoaDao.consultarUsuario(pessoa.getLogin(), pessoa.getSenha());
+		if(pessoaUser != null) {//achou o usuario
+			//add usuario na sessao usuarioLogado
+			FacesContext context = FacesContext.getCurrentInstance();//para qualquer informação do ambiente de execução do jSF
+			ExternalContext externalContext = context.getExternalContext();
+			
+			HttpServletRequest req = (HttpServletRequest) externalContext.getRequest();			
+			HttpSession session = req.getSession();
+			session.setAttribute("usuarioLogado", pessoaUser);
+			
+			return "usuarios.xhtml";
+		}
+		return "login.xhtml";
+	}
 
 	public String salvar() {
 		pessoa = daoGeneric.merge(pessoa);

@@ -12,6 +12,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import br.com.jsf.entidades.Pessoa;
+
 
 import br.com.jsf.jpautil.JPAUtil;
 
@@ -25,10 +27,9 @@ public class Filterutenticacao implements Filter{
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		
-		String usuarioLogado = (String) session.getAttribute("usuarioLogado"); //variavel de sessao que será atribuido ao login
+		Pessoa usuarioLogado = (Pessoa) session.getAttribute("usuarioLogado"); //variavel de sessao que será atribuido ao login
 		String url = req.getServletPath();
-		if(!url.equalsIgnoreCase("login.xhtml")  && usuarioLogado == null 
-				|| (usuarioLogado!= null && usuarioLogado.trim().isEmpty())) {
+		if(!url.equalsIgnoreCase("login.xhtml")  && usuarioLogado == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.xhtml");
 			dispatcher.forward(request, response);
 			return;
