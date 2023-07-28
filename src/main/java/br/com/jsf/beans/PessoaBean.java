@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -35,10 +36,17 @@ public class PessoaBean {
 			HttpServletRequest req = (HttpServletRequest) externalContext.getRequest();			
 			HttpSession session = req.getSession();
 			session.setAttribute("usuarioLogado", pessoaUser);
-			
+			//RequestDispatcher dispatcher = req.getRequestDispatcher("/usuarios.xhtml");			
 			return "usuarios.xhtml";
 		}
 		return "login.xhtml";
+	}
+	
+	public boolean permitirAcesso(String acesso) {
+		FacesContext context = FacesContext.getCurrentInstance();//para qualquer informação do ambiente de execução do jSF
+		ExternalContext externalContext = context.getExternalContext(); 
+		Pessoa pessoaUser = (Pessoa)externalContext.getSessionMap().get("usuarioLogado"); // só da acesso se a sessao for setada com usuarioLogado
+		return pessoaUser.getPerfilUser().equals(acesso); //retorna o acesso é usuarioLogado
 	}
 
 	public String salvar() {
