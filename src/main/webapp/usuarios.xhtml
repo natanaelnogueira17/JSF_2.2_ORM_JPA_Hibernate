@@ -8,8 +8,14 @@
 	<title>Usuários</title>
 </h:head>
 
+
 <h:body>
 <h:form>
+	<h:commandLink value="Administração" action="lancamento" style="margin-left:1cm"/>
+	<h:commandLink value="Lancamentos" action="usuarios" style="margin-left:1cm"/>
+	<h:commandLink value="Trocar Usuário" action="login" style="margin-left:1cm"/>
+</h:form>
+<h:form id="formPessoa" rendered="#{pessoaBean.permitirAcesso('ADMINISTRADOR')}" >
 		<h1>Usuários</h1>
 		<h:graphicImage 
 		 height="150"
