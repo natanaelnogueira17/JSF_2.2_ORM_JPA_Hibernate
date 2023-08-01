@@ -23,7 +23,7 @@ public class LancamentoDaoImpl implements LancamentoDao{
 		entityManager.close();
 		
 		
-		return null;
+		return lista;
 	}
 	
 }
