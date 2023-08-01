@@ -11,6 +11,8 @@ import javax.faces.context.FacesContext;
 import br.com.jsf.dao.DaoGeneric;
 import br.com.jsf.entidades.Lancamento;
 import br.com.jsf.entidades.Pessoa;
+import br.com.jsf.repository.LancamentoDao;
+import br.com.jsf.repository.LancamentoDaoImpl;
 
 @ViewScoped
 @ManagedBean
@@ -18,6 +20,7 @@ public class LancamentoBean {
 	private Lancamento lancamento = new Lancamento();
 	private DaoGeneric<Lancamento> daoGeneric = new DaoGeneric<>();
 	private List<Lancamento> lancamentos = new ArrayList<>();
+	private LancamentoDao lancamentoDao = new LancamentoDaoImpl();
 	
 	public String salvar() {
 		FacesContext context = FacesContext.getCurrentInstance();//para qualquer informação do ambiente de execução do jSF
@@ -25,15 +28,27 @@ public class LancamentoBean {
 		Pessoa pessoaUser = (Pessoa) externalContext.getSessionMap().get("usuarioLogado");
 		lancamento.setUsuario(pessoaUser);
 		daoGeneric.salvar(lancamento);
-		
+		carregarLancamento();
 		
 		return "";
 	}
 	
+	
+	public void carregarLancamento() {
+		FacesContext context = FacesContext.getCurrentInstance();//para qualquer informação do ambiente de execução do jSF
+		ExternalContext externalContext = context.getExternalContext();
+		Pessoa pessoaUser = (Pessoa) externalContext.getSessionMap().get("usuarioLogado");
+		lancamentos = lancamentoDao.consultar(pessoaUser.getId());
+	}
+	
 	public String novo(){
+		lancamento = new Lancamento();
 		return "";
 	}
 	public String remover() {
+		daoGeneric.deletePorID(lancamento);
+		lancamento = new Lancamento();
+		carregarLancamento();
 		return "";
 	}
 	
